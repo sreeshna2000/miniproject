@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics Aptitude Test</title>
+        <style>
+        body {
+            font-family: 'Georgia', serif; /* Classic font */
+            background-color: #eef2f3; /* Soft gray background */
+            color: #4a4a4a; /* Dark gray text */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #34495e; /* Navy blue background */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #2980b9; /* Classic blue text */
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            border-bottom: 2px solid #34495e; /* Matching line under heading */
+            padding-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 25px;
+        }
+        .question p {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        label {
+            font-size: 1.1em;
+            margin: 5px 0;
+            display: block;
+        }
+        .submit-btn {
+            background-color: #2980b9; /* Classic blue button */
+            color: white;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1.3em;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin: 30px auto;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #1c598a; /* Darker blue on hover */
+        }
+        .submit-btn:focus {
+            outline: none;
+            box-shadow: 0 0 5px #2980b9;
+        }
+        .back-button {
+            display: inline-block;
+            background-color: #34495e; /* Navy blue button */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin: 0 auto 20px auto; /* Centered and with margin */
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .back-button:hover {
+            background-color: #1c2c3d; /* Darker navy on hover */
+        }
+        footer {
+            background-color: #eef2f3; /* Soft gray footer background */
+            padding: 15px;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        #timer {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<script>
+    // Set the time limit in seconds (1 minute = 60 seconds)
+    var timeLimit = 60; // Adjust this to your desired time limit
+
+    function startTimer() {
+        var timer = document.getElementById("timer");
+        var interval = setInterval(function () {
+            var minutes = Math.floor(timeLimit / 60);
+            var seconds = timeLimit % 60;
+            timer.textContent = minutes + "m " + seconds + "s";
+
+            // Decrement the time limit
+            timeLimit--;
+
+            // When time is up, redirect to the timeout page
+            if (timeLimit < 0) {
+                clearInterval(interval);
+                alert("Time's up! Redirecting you to the course page.");
+                window.location.href = "{% url 'timeout_page' %}"; // Replace with your timeout URL
+            }
+        }, 1000);
+    }
+
+    // Start the timer when the page loads
+    window.onload = startTimer;
+</script>
+<body>
+
+    <header>
+        <h1>Career Guidance - Statistics</h1>
+    </header>
+    <b>Timeout in: <span id="timer">1m 00s</span></b>  <!-- Display the countdown here -->
+
+    <div class="container">
+        <h2>Aptitude Test</h2>
+
+        <form method="POST" action="{% url 'submit_stati' %}">
+            {% csrf_token %}
+
+            <!-- Loop through each question and display it -->
+            {% for question in questions %}
+                <div class="question">
+                    <p>{{ forloop.counter }}. {{ question.question_text }}</p>
+                    <label>
+                        <input type="radio" name="q{{ question.id }}" value="A" required> {{ question.option_a }}
+                    </label>
+                    <label>
+                        <input type="radio" name="q{{ question.id }}" value="B" required> {{ question.option_b }}
+                    </label>
+                    <label>
+                        <input type="radio" name="q{{ question.id }}" value="C" required> {{ question.option_c }}
+                    </label>
+                    <label>
+                        <input type="radio" name="q{{ question.id }}" value="D" required> {{ question.option_d }}
+                    </label>
+                </div>
+            {% endfor %}
+
+            <!-- Submit button -->
+            <button type="submit" class="submit-btn">Submit Test</button>
+        </form>
+    </div>
+    <a href="{% url 'statistic' %}" class="back-button">Back</a>
+
+    <footer>
+        &copy; 2024 Career Guidance. All rights reserved.
+    </footer>
+
+</body>
+</html>

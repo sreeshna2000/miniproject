@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Users</title>
+</head>
+<style>
+    /* Reset basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+}
+
+/* Title Styling */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button Styling */
+.btn {
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+.view-btn {
+    background-color: #4CAF50;
+}
+
+.edit-btn {
+    background-color: #2196F3;
+}
+
+.delete-btn {
+    background-color: #f44336;
+}
+
+.btn:hover {
+    opacity: 0.8;
+
+}
+.back-btn {
+    background-color: #95a5a6;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+</style>
+<body>
+    <h1>User Profiles</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Qualification</th>
+                <th>Age</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.userprofile.qualification|default:"N/A" }}</td>
+                    <td>{{ user.userprofile.age|default:"N/A" }}</td>
+                    <td>{{ user.userprofile.location|default:"N/A" }}</td>
+                    <td>
+                        <a href="{% url 'view_user_profile' user_id=user.id %}" class="btn view-btn">View</a>
+                        <a href="{% url 'edit_user_profile' user_id=user.id %}" class="btn edit-btn">Edit Profile</a>
+                        <a href="{% url 'delete_user_profile' user_id=user.id %}" class="btn delete-btn">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No users found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+        <div class="button-container">
+            <a href="{% url 'dashboard' %}" class="back-btn">Back</a>
+        </div>
+</body>
+</html>

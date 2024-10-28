@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bioscience Job Opportunities</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        /* Base and Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 90%;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            color: #6a1b9a;
+            font-size: 2.6em;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        /* Section Titles */
+        h2 {
+            margin: 35px 0 15px;
+            color: #00897b;
+            font-size: 1.8em;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #26a69a;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            font-size: 1em;
+            color: #333;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #5e35b1;
+            color: #fff;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        td {
+            background-color: #f3e5f5;
+            transition: background-color 0.3s ease;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #ede7f6;
+        }
+
+        tr:hover td {
+            background-color: #d1c4e9;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.4em; }
+            table { font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bioscience Job Opportunities</h1>
+    </header>
+
+    <div class="container">
+        <h2>Available Positions</h2>
+        <div class="grid">
+
+            <div class="job-category">
+                <h3>Research</h3>
+                <ul>
+                    <li>Biomedical Scientist</li>
+                    <li>Clinical Research Associate</li>
+                    <li>Laboratory Technician</li>
+                    <li>Research Scientist</li>
+                    <li>Pharmaceutical Researcher</li>
+                </ul>
+            </div>
+
+            <div class="job-category">
+                <h3>Healthcare</h3>
+                <ul>
+                    <li>Healthcare Consultant</li>
+                    <li>Medical Laboratory Scientist</li>
+                    <li>Genetic Counselor</li>
+                    <li>Clinical Geneticist</li>
+                </ul>
+            </div>
+
+            <div class="job-category">
+                <h3>Quality Assurance</h3>
+                <ul>
+                    <li>Quality Control Analyst</li>
+                    <li>Regulatory Affairs Specialist</li>
+                    <li>Quality Assurance Manager</li>
+                    <li>Compliance Officer</li>
+                </ul>
+            </div>
+
+            <div class="job-category">
+                <h3>Biotechnology</h3>
+                <ul>
+                    <li>Biotechnology Consultant</li>
+                    <li>Bioprocess Engineer</li>
+                    <li>Biotech Product Manager</li>
+                    <li>Biomanufacturing Specialist</li>
+                </ul>
+            </div>
+
+            <div class="job-category">
+                <h3>Environmental Science</h3>
+                <ul>
+                    <li>Environmental Scientist</li>
+                    <li>Ecologist</li>
+                    <li>Wildlife Biologist</li>
+                    <li>Conservation Scientist</li>
+                </ul>
+            </div>
+
+            <div class="job-category">
+                <h3>Education</h3>
+                <ul>
+                    <li>Biology Teacher</li>
+                    <li>Academic Researcher</li>
+                    <li>University Lecturer</li>
+                    <li>Curriculum Developer</li>
+                </ul>
+            </div>
+
+            <div class="job-category">
+                <h3>Other Emerging Roles</h3>
+                <ul>
+                    <li>Bioinformatics Specialist</li>
+                    <li>Clinical Data Manager</li>
+                    <li>Health Informatics Specialist</li>
+                    <li>Biostatistician</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Career Guidance Application</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>+2 Bio Science Overview</title>
+    <style>
+        /* Body and General Styling */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f4f4f4; /* Light beige background */
+            margin: 0;
+            padding: 0;
+            color: #333; /* Dark grey for readability */
+        }
+        /* Header design */
+        header {
+            background-color: #8b4513; /* Classic brown */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds depth */
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        header p {
+            margin: 5px 0;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        /* Navigation bar */
+        nav {
+            background-color: #5a3521; /* Darker brown for contrast */
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #f0e68c; /* Light yellow on hover */
+        }
+        /* Container and Layout */
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .main-content {
+            flex: 3; /* Main content area */
+            padding: 20px;
+        }
+        .sidebar {
+            flex: 1; /* Sidebar area */
+            background-color: #f4ede3; /* Light classic beige */
+            padding: 20px;
+            border-radius: 10px;
+            margin-left: 20px;
+        }
+        /* Heading Styles */
+        h2, h3 {
+            color: #5a3521;
+            margin-bottom: 15px;
+        }
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid #8b4513;
+            padding-bottom: 10px;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.8em;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            background-color: #8b4513;
+            color: white;
+            padding: 12px 30px;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #5a3521;
+        }
+        /* Sidebar Links */
+        .sidebar a {
+            color: #5a3521;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .sidebar a:hover {
+            color: #8b4513;
+        }
+        /* Footer Styling */
+        footer {
+            background-color: #8b4513;
+            padding: 10px;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: white;
+        }
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            background-color: #d9534f; /* Bootstrap danger color */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #c9302c; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>+2 Bio Science Overview</h1>
+        <p>Your guide to a successful future in Bio Science</p>
+    </header>
+
+    <nav>
+        <a href="#overview">Overview</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#careers">Career Opportunities</a>
+        <a href="#study-tips">Study Tips</a>
+        <a href="#future-studies">Future Studies</a>
+    </nav>
+
+    <div class="container">
+        <div class="main-content" id="overview">
+            {% for course in courses %}
+                <h2>{{ course.title }}</h2>
+                <p>{{ course.description }}</p>
+
+                <div class="main-content" id="subjects">
+                    <h3>Subjects:</h3>
+                    <ul>
+                        {% for subject in course.subjects %}
+                            <li>{{ subject }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="main-content" id="careers">
+                    <h3>Career Opportunities:</h3>
+                    <ul>
+                        {% for opportunity in course.career_opportunities %}
+                            <li>{{ opportunity }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="main-content" id="study-tips">
+                    <h3>Study Tips:</h3>
+                    <ul>
+                        {% for tip in course.study_tips %}
+                            <li>{{ tip }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="main-content" id="future-studies">
+                    <h3>Future Studies:</h3>
+                    <ul>
+                        {% for study in course.future_studies %}
+                            <li>{{ study }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+
+            <!-- Aptitude Test Button -->
+            <a href="{% url 'aptitude_test' %}" class="button">Take Aptitude Test</a>
+        </div>
+
+        <div class="sidebar">
+            <h3>Related Courses</h3>
+            <ul>
+                <li><a href="#course1">+2 Physics</a></li>
+                <li><a href="#course2">+2 Chemistry</a></li>
+                <li><a href="#course3">+2 Mathematics</a></li>
+            </ul>
+            <h3>Useful Resources</h3>
+            <ul>
+                <li><a href="#resource1">Biology Textbooks</a></li>
+                <li><a href="#resource2">Online Courses</a></li>
+                <li><a href="#resource3">Study Guides</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <a href="{% url 'after_10' %}" class="back-button">Back</a>
+
+    <footer>
+        &copy; 2024 Career Guidance. All rights reserved.
+    </footer>
+
+</body>
+</html>

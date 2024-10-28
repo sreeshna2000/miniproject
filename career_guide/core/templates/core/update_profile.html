@@ -1,0 +1,48 @@
+<!-- core/templates/core/update_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile</title>
+                {% load static %}
+
+        <link rel="stylesheet" href="{% static 'core/css/update_profile.css' %}">
+
+</head>
+<body>
+    <div class="container">
+
+        <h2><center>Update Profile</center></h2>
+        <form method="post">
+        {% csrf_token %}
+        <label >Username:</label>
+        <input type="text" name="username" value="{{ user.username }}" required>
+
+        <label>First Name:</label>
+        <input type="text" name="first_name" value="{{ user.first_name }}">
+
+        <label>Last Name:</label>
+        <input type="text" name="last_name" value="{{ user.last_name }}">
+
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ user.email }}" required>
+
+        <!-- Update UserProfile Information -->
+        <label>Qualification:</label>
+        <input type="text" name="qualification" value="{{ profile.qualification }}" required>
+
+        <label>Age:</label>
+        <input type="number" name="age" value="{{ profile.age }}" required>
+
+        <label>Location:</label>
+        <input type="text" name="location" value="{{ profile.location }}" required>
+
+        <button type="submit">Update Profile</button>
+            <button type="button" onclick="window.location.href='{% url 'profile' %}';">Back to Profile</button>
+                </form>
+
+    </div>
+        <link rel="stylesheet" href="{% static 'core/css/update_profile.js' %}">
+
+</body>
+</html>

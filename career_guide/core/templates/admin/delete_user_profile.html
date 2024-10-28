@@ -1,0 +1,88 @@
+<!-- admin/delete_user_profile.html -->
+<style>
+  /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container Styling */
+.delete-profile-card {
+    width: 400px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-align: center;
+}
+
+/* Title Styling */
+.delete-profile-card h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #c0392b; /* Red color for warning */
+    margin-bottom: 20px;
+}
+
+/* Message Styling */
+.delete-profile-card p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Button Styling */
+.delete-profile-card button[type="submit"] {
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #c0392b; /* Red color for delete action */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.delete-profile-card button[type="submit"]:hover {
+    background-color: #a93226; /* Darker Red on hover */
+}
+
+.delete-profile-card a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #3498db; /* Blue color for cancel link */
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.delete-profile-card a:hover {
+    color: #2980b9; /* Darker Blue on hover */
+}
+
+</style>
+<div class="delete-profile-card">
+    <h1>Delete Profile: {{ user.username }}</h1>
+    <p>Are you sure you want to delete this user profile?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+    </form>
+
+    <a href="{% url 'view_user_profile' user.id %}">Cancel</a>
+</div>

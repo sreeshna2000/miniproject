@@ -1,0 +1,138 @@
+<!-- admin/edit_user_profile.html -->
+<style>
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container Styling */
+.edit-profile-card {
+    width: 600px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/* Title Styling */
+.edit-profile-card h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Fieldset Styling */
+.edit-profile-card fieldset {
+    border: 1px solid #dcdcdc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.edit-profile-card legend {
+    font-size: 18px;
+    font-weight: 500;
+    color: #34495e;
+    padding: 0 10px;
+}
+
+/* Form Fields Styling */
+.edit-profile-card form p {
+    margin-bottom: 15px;
+}
+
+.edit-profile-card label {
+    font-weight: 600;
+    color: #555;
+}
+
+.edit-profile-card input,
+.edit-profile-card select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Button Styling */
+.edit-profile-card button[type="submit"],
+.edit-profile-card a {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 10px;
+}
+
+.edit-profile-card button[type="submit"] {
+    background-color: #28a745; /* Green */
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.edit-profile-card button[type="submit"]:hover {
+    background-color: #218838; /* Darker Green */
+}
+
+.edit-profile-card a {
+    background-color: #6c757d; /* Gray */
+    color: white;
+}
+
+.edit-profile-card a:hover {
+    background-color: #5a6268; /* Darker Gray */
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+</style>
+<div class="edit-profile-card">
+    <h1>Edit Profile: {{ user.username }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Basic Info</legend>
+            {{ user_form.as_p }}
+        </fieldset>
+        <fieldset>
+            <legend>Profile Details</legend>
+            {{ profile_form.as_p }}
+        </fieldset>
+        <div class="button-container">
+            <button type="submit">Save Changes</button>
+            <a href="{% url 'view_user_profile' user.id %}">Cancel</a>
+        </div>
+    </form>
+</div>

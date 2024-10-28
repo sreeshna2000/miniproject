@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore a variety of courses offered in fields like Computer Science, Commerce, Bio Science, and more.">
+    <meta name="keywords" content="Courses, Computer Science, Commerce, Bio Science, Engineering, Psychology, Mathematics">
+    <title>Courses Offered</title>
+    <style>
+     body {
+            font-family: 'Arial', sans-serif;
+            background:#2f4f4f; /* Pastel green to light blue gradient */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 30px;
+            position: relative;
+            color: #333;
+        }
+
+        .course-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .course-description {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .course-card button {
+            background: #0072ff; /* Button background color */
+            color: white; /* Button text color */
+            border: none;
+            border-radius: 25px; /* Rounded button */
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .course-card button:hover {
+            background: #0056b3; /* Darker shade on hover */
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .course-title {
+                font-size: 22px;
+            }
+
+            .course-card button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Courses Offered</h1>
+    <div class="course-container">
+        <div class="course-card">
+            <div class="course-title">Computer Science</div>
+            <div class="course-description">Explore the world of programming and software development.</div>
+            <button onclick="location.href='{% url 'computer_job' %}'" aria-label="Enroll in Computer Science course">Enroll Now</button>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Commerce</div>
+            <div class="course-description">Dive into the principles of business and finance.</div>
+            <button onclick="location.href='{% url 'commerece_job' %}'" aria-label="Enroll in Commerce course">Enroll Now</button>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Bio Science</div>
+            <div class="course-description">Study the fundamentals of biology and life sciences.</div>
+            <button onclick="location.href='{% url 'bio_job' %}'" aria-label="Enroll in Bio Science course">Enroll Now</button>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Mathematics</div>
+            <div class="course-description">Master advanced concepts in mathematics and statistics.</div>
+            <button onclick="location.href='{% url 'math_job' %}'" aria-label="Enroll in Mathematics course">Enroll Now</button>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Psychology</div>
+            <div class="course-description">Understand human behavior and mental processes.</div>
+            <button onclick="location.href='{% url 'phyco_job' %}'" aria-label="Enroll in Psychology course">Enroll Now</button>
+        </div>
+        <div class="course-card">
+            <div class="course-title">Engineering</div>
+            <div class="course-description">Innovate and create solutions in various engineering fields.</div>
+            <button onclick="location.href='{% url 'eng_job' %}'" aria-label="Enroll in Engineering course">Enroll Now</button>
+        </div>
+    </div>
+</body>
+</html>

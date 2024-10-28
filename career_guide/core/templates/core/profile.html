@@ -1,0 +1,29 @@
+<!-- core/templates/core/profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+            {% load static %}
+     <link rel="stylesheet" href="{% static 'core/css/profile.css' %}">
+
+</head>
+<body>
+    <div class="profile-container">
+
+        <h1><mark>Welcome {{ profile.user.username }}</mark></h1>
+        <br>
+    <p><strong>First name:</strong> {{ profile.user.first_name }}</p><br>
+    <p><strong>Last name:</strong> {{ profile.user.last_name }}</p><br>
+    <p><strong>Email:</strong> {{ profile.user.email }}</p><br>
+    <p><strong>Qualification:</strong> {{ profile.qualification }}</p><br>
+    <p><strong>Age:</strong> {{ profile.age }}</p><br>
+    <p><strong>Location:</strong> {{ profile.location }}</p><br><br>
+<button type="button" onclick="window.location.href='{% url 'update_profile' %}';">Edit Profile</button><br>
+        <button type="button" onclick="window.location.href='{% url 'index' %}';">Back to Home</button>
+
+    </div>
+    <script src="{% static 'core/js/profile.js' %}"></script>
+
+</body>
+</html>

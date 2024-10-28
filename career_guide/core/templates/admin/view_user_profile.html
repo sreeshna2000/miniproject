@@ -1,0 +1,126 @@
+<style>
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container Styling */
+.profile-card {
+    width: 380px;
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+}
+
+/* Title Styling */
+.profile-card h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* Profile Info Styling */
+.profile-card p {
+    font-size: 15px;
+    color: #666;
+    margin: 6px 0;
+}
+
+/* Highlighted Field */
+.profile-card p strong {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Divider */
+.profile-card hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+/* Button Container */
+.profile-card .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+/* Button Styling */
+.profile-card a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100px;
+    text-align: center;
+}
+
+.profile-card .edit-btn {
+    background-color: #3498db;
+}
+
+.profile-card .delete-btn {
+    background-color: #e74c3c;
+}
+
+.profile-card .back-btn {
+    background-color: #95a5a6;
+}
+
+.profile-card a:hover {
+    transform: translateY(-2px);
+}
+
+.profile-card .edit-btn:hover {
+    background-color: #2980b9;
+}
+
+.profile-card .delete-btn:hover {
+    background-color: #c0392b;
+}
+
+.profile-card .back-btn:hover {
+    background-color: #7f8c8d;
+}
+
+
+
+</style>
+<div class="profile-card">
+    <h1>User Profile</h1>
+    <hr>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>First Name:</strong> {{ user.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+    <p><strong>Qualification:</strong> {{ user_profile.qualification }}</p>
+    <p><strong>Age:</strong> {{ user_profile.age }}</p>
+    <p><strong>Location:</strong> {{ user_profile.location }}</p>
+
+    <div class="button-container">
+        <a href="{% url 'edit_user_profile' user.id %}" class="edit-btn">Edit</a>
+        <a href="{% url 'delete_user_profile' user.id %}" class="delete-btn">Delete</a>
+        <a href="{% url 'view_users' %}" class="back-btn">Back</a>
+    </div>
+</div>

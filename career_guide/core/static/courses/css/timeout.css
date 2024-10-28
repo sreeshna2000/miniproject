@@ -1,0 +1,56 @@
+/* Basic reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Light background for the page */
+    color: #333; /* Dark text for readability */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0;
+    text-align: center; /* Center text alignment */
+}
+
+/* Container for timeout message */
+.container {
+    background: white; /* White background for the container */
+    padding: 20px; /* Padding inside the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 400px; /* Maximum width of the container */
+    width: 100%; /* Full width of the container */
+}
+
+/* Heading styles */
+h1 {
+    color: #d9534f; /* Red color for timeout alert */
+    margin-bottom: 15px; /* Spacing below the heading */
+}
+
+/* Paragraph styles */
+p {
+    margin: 15px 0; /* Spacing above and below paragraphs */
+}
+
+/* Button styles */
+.button {
+    display: inline-block; /* Inline-block for proper spacing */
+    padding: 10px 20px; /* Padding for button */
+    background-color: #5bc0de; /* Bootstrap info color */
+    color: white; /* White text color */
+    text-decoration: none; /* No underline on links */
+    border-radius: 5px; /* Rounded button corners */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+/* Button hover effect */
+.button:hover {
+    background-color: #31b0d5; /* Darker shade on hover */
+}

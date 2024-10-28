@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>after_10</title>
+     {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'courses/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'courses/assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'courses/assets/css/templatemo-grad-school.css' %}">
+    <link rel="stylesheet" href="{% static 'courses/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'courses/assets/css/lightbox.css' %}">
+  </head>
+  <body>
+  <section class="section courses" data-section="section4">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Choose Your Course</h2>
+          </div>
+        </div>
+        <div class="owl-carousel owl-theme">
+          <div class="item">
+            <img src="{% static 'courses/assets/images/courses-01.jpg' %}" alt="Course #1">
+            <div class="down-content">
+              <h4>Bio Science</h4>
+              <p>Bio Science studies living organisms and their functions, supporting careers in healthcare and research.</p>
+
+              <div class="text-button-pay">
+                <a href="{% url 'bio_science' %}">view <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="{% static 'courses/assets/images/courses-02.jpg' %}" alt="Course #2">
+            <div class="down-content">
+              <h4>Commerce</h4>
+              <p>Commerce focuses on trade, business, and financial activities, leading to careers in business management, finance, and economics.</p>
+
+              <div class="text-button-free">
+                <a href="{% url 'commerce' %}">view <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="{% static 'courses/assets/images/courses-03.jpg' %}" alt="Course #3">
+            <div class="down-content">
+              <h4>Computer Science</h4>
+              <p>Computer Science studies computers, programming, and technology, leading to careers in software development, data analysis, and IT.</p>
+
+              <div class="text-button-pay">
+                <a href="{% url 'computer' %}">view <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="{% static 'courses/assets/images/courses-04.jpg' %}" alt="Course #4">
+            <div class="down-content">
+              <h4>Statistics </h4>
+              <p>            The Statistics course provides a comprehensive understanding of statistical principles and methods. It covers data collection, analysis, interpretation, and presentation.
+</p>
+
+              <div class="text-button-free">
+                <a href="{% url 'statistic' %}">view <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <img src="{% static 'courses/assets/images/courses-05.jpg' %}" alt="">
+            <div class="down-content">
+              <h4>humanities</h4>
+              <p>Humanities study human culture, history, and society, leading to careers in education, law, and the arts.</p>
+
+              <div class="text-button-pay">
+                <a href="{% url 'humanities' %}">view <i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </section>
+
+  <a href="{% url 'index' %}" class="back-button"><b><font color="black"> Back</font></b></a>
+
+  
+  <center>                    <p class="p-small">Copyright © 2024 Career - All rights reserved</p>
+</center>
+
+          
+
+
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'courses/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'courses/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{% static 'courses/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'courses/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'courses/assets/js/lightbox.js' %}"></script>
+    <script src="{% static 'courses/assets/js/tabs.js' %}"></script>
+    <script src="{% static 'courses/assets/js/video.js' %}"></script>
+    <script src="{% static 'courses/assets/js/slick-slider.js' %}"></script>
+    <script src="{% static 'courses/assets/js/custom.js' %}"></script>
+         
+</body>
+</html>

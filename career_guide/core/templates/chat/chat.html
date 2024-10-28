@@ -1,0 +1,158 @@
+{% load get_item %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        /* Reset and Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-Page Chat Layout */
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #e5ddd5;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+        }
+
+        /* Messages Area */
+        #messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f0f0f0;
+        }
+
+        /* Date Header */
+        .date-header {
+            text-align: center;
+            background-color: #d3d3d3;
+            padding: 5px;
+            font-size: 12px;
+            color: #555;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        /* Message Styling */
+        .message {
+            max-width: 75%;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+            position: relative;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* User Message on Left */
+        .user-message {
+            align-self: flex-start;
+            background-color: #dcf8c6;
+            border-radius: 0px 8px 8px 8px;
+        }
+
+        /* Admin Message on Right */
+        .admin-message {
+            align-self: flex-end;
+            background-color: #fff;
+            border-radius: 8px 0px 8px 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Timestamp within Messages */
+        .timestamp {
+            display: block;
+            font-size: 10px;
+            color: #666;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        /* Fixed Input Area at Bottom */
+        #message-form {
+            width: 100%;
+            padding: 10px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+
+        #message-form input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 18px;
+            font-size: 14px;
+            outline: none;
+            margin-right: 10px;
+        }
+
+        #message-form button {
+            padding: 10px 15px;
+            background-color: #34b7f1;
+            border: none;
+            color: white;
+            border-radius: 18px;
+            cursor: pointer;
+        }
+
+        #message-form button:hover {
+            background-color: #30a4e3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div id="messages">
+            {% regroup messages by timestamp.date as message_days %}
+            {% for day in message_days %}
+                <div class="date-header">{{ day.grouper|date:"D, M d, Y" }}</div>
+                {% for message in day.list %}
+                    <div class="message {% if message.sender.is_admin %}admin-message{% else %}user-message{% endif %}">
+                        <strong>{{ message.sender.username }}</strong>: {{ message.message }}
+                        <span class="timestamp">{{ message.timestamp|date:"h:i A" }}</span>
+                    </div>
+                    {% for reply in replies|get_item:message.id %}
+                        <div class="message admin-message">
+                            <strong>Admin:</strong> {{ reply.reply }}
+                            <span class="timestamp">{{ reply.timestamp|date:"h:i A" }}</span>
+                        </div>
+                    {% empty %}
+                        <div class="message admin-message">
+                            <strong>Admin:</strong> No replies yet.
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% empty %}
+                <p>No messages to display.</p>
+            {% endfor %}
+        </div>
+
+        <form id="message-form" method="post" action="{% url 'send_message' %}">
+            {% csrf_token %}
+            <input type="text" name="message" placeholder="Type your message here..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>

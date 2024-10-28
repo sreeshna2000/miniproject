@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Feedback</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Background Gradient */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f2f5, #c0c8d1);
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Container Styling */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px 35px;
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4a90e2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #5a8de8, #3a6fa0);
+            color: white;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #eaf0f6;
+        }
+
+        tbody tr:hover {
+            background-color: #d4e0f0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* No Feedback Row Styling */
+        .no-feedback {
+            text-align: center;
+            color: #888;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        /* Button for Reply or Actions */
+        .action-btn {
+            background-color: #4a90e2;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .action-btn:hover {
+            background-color: #367acc;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 600px) {
+            th, td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>User Feedback</h1>
+            <p>Review and respond to feedback from users.</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Feedback</th>
+                    <th>Phone Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feedbacks %}
+                <tr>
+                    <td>{{ feedback.email }}</td>
+                    <td>{{ feedback.feedback_text }}</td>
+                    <td>{{ feedback.phone_number|default:"N/A" }}</td>
+                    <td><button class="action-btn">Reply</button></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="no-feedback">No feedback available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

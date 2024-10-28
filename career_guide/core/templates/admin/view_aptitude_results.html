@@ -1,0 +1,259 @@
+<!-- templates/admin/view_aptitude_results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Test Results</title>
+</head>
+    <style>
+        /* Base and Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f7;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 90%;
+            margin: 20px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.4em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Section Titles */
+        h2 {
+            margin: 30px 0 10px;
+            color: #1e88e5;
+            font-size: 1.8em;
+            font-weight: 600;
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 8px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            margin: 15px 0;
+            border-collapse: collapse;
+            font-size: 1em;
+            color: #333;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #f8f9fa;
+            transition: background-color 0.3s ease;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #eaf3fc;
+        }
+
+        tr:hover td {
+            background-color: #d4e4f4;
+        }
+
+        /* Animation */
+        .container {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+            table { font-size: 0.9em; }
+        }
+    </style>
+<body>
+    <div class="container">
+        <h1>Aptitude Test Results</h1>
+
+        <h2>Biology</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+
+            </tr>
+            {% for result in bio_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+               <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+            {% endfor %}
+        </table>
+
+        <h2>Commerce</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for result in commerce_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+              <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Humanities</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for result in humanities_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+              <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Computer Science</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for result in computer_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+               <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Statistics</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for result in statistics_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+               <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>BCA</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for result in bca_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+               <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>BBA</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for result in bba_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+               <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Chemistry</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for result in chemistry_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+               <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>BSCCOM</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Score</th>
+                <th>Date</th>
+            </tr>
+            {% for result in bscc_com_results %}
+            <tr>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.score }}</td>
+               <td>{{ result.start_time|date:"Y-m-d H:i:s" }}</td> <!-- Display Start Time -->
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

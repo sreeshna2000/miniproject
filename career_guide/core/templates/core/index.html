@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Create a stylish landing page for your business startup and get leads for the offered services with this HTML landing page template.">
+    <meta name="author" content="Inovatik">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>Career guidance Application</title>
+    
+    <!-- Styles -->
+        {% load static %}
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600,700,700i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="{% static 'core/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/fontawesome-all.css' %}" rel="stylesheet">
+    <link href="{% static 'core/css/swiper.css' %}" rel="stylesheet">
+	<link href="{% static 'core/css/magnific-popup.css' %}" rel="stylesheet">
+	<link href="{% static 'core/css/styles.css' %}" rel="stylesheet">
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="{% static 'core/images/favicon.png' %}">
+</head>
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+    
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <!-- Text Logo - Use this if you don't have a graphic logo -->
+        <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
+
+        <!-- Image Logo -->
+        <a class="navbar-brand logo-image" href="{% url 'index' %}"><img src="{% static 'core/images/career.png' %}"alt="alternative"></a>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-awesome fas fa-bars"></span>
+            <span class="navbar-toggler-awesome fas fa-times"></span>
+        </button>
+        <!-- end of mobile menu toggle button -->
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#header">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#help">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#pricing">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{% url 'feedback' %}">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#job">Job</a>
+                </li>
+
+                <!-- Dropdown Menu -->          
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle page-scroll" href="#about" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'term' %}"><span class="item-text">Terms Conditions</span></a>
+                        <div class="dropdown-items-divide-hr"></div>
+                        <a class="dropdown-item" href="{% url 'privacy' %}"><span class="item-text">Privacy Policy</span></a>
+                    </div>
+                </li>
+                <!-- end of dropdown menu -->
+
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{% url 'contact' %}">Contact</a>
+                </li>
+                    {% csrf_token %}
+
+            {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle page-scroll" href="" id="Dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <b>Hai {{user.username}}</b></a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'profile' %} "><span class="item-text">my profile</span></a>
+                        <div class="dropdown-items-divide-hr"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}"><span class="item-text">Logout</span></a>
+                    </div>
+                </li>
+
+                {% else %}
+                 <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{% url 'login' %}"><img src="{% static 'core/images/user.png' %}"alt="alternative"><span>login</span></a>
+                 </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <h1><span class="turquoise">Career World </span><br> For Students</h1>
+                            <p class="p-large">Career guidance is a type of counseling undertaken by professionals to identify and explore the most suitable careers and occupations to start their career in the right direction.</p>
+                            <a class="btn-solid-lg page-scroll" href="{% url 'learn_more' %}">Learn More</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6">
+                        <div class="image-container">
+                            <img class="img-fluid" src="{% static 'core/images/header-teamwork.svg' %}" alt="alternative">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+
+
+
+    <!-- Services -->
+    <div id="services" class="cards-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Career Guidance Services</h2>
+                    <p class="p-heading p-large">For your Career World application, you can categorize the services into three main areas based on the core functionalities you provide. Here are three key services:</p>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Card -->
+                    <div class="card">
+                        <img class="card-image" src="{% static 'core/images/services-icon-1.svg' %}" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title">Aptitude Testing and Career Recommendations</h4>
+                            <p>This service is designed to help students understand their strengths, interests, and capabilities through an aptitude test. The system evaluates their answers and provides tailored recommendations on career options and educational paths based on their results.</p>
+                            <br>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <img class="card-image" src="{% static 'core/images/services-icon-2.svg' %}" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title">Career Guidance and Expert Consultations
+</h4>
+                            <p>This service offers students access to expert advice and consultations to help them make informed decisions about their future. By providing direct access to professionals, the system bridges the gap between students and expert career counselors.</p>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <img class="card-image" src="{% static 'core/images/services-icon-3.svg' %}" alt="alternative">
+                        <div class="card-body">
+                            <h4 class="card-title"> Educational Path Exploration</h4>
+                            <p>This service provides students with a comprehensive exploration of educational and career paths based on their academic background (e.g., after 10th, after 12th). It helps students navigate available courses and career opportunities by offering detailed information and comparisons of different career tracks.</p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+                    
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-1 -->
+    <!-- end of services -->
+
+
+    <!-- Details 1 -->
+        <div id="help">
+    <div class="basic-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h2>Talk Guidance</h2>
+                        <p>Career Guidance Application allows students to connect with experts for career advice and insights. This feature, available through a "Take Guidance" button, enables users to initiate conversations with experts using their Google accounts. It's designed to offer students personalized, real-time career advice, helping them navigate their education and career paths by consulting professionals directly.</p>
+                        <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-1">CHATBOX</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{% static 'core/images/details-1-office-worker.svg' %}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-1 -->
+    <!-- end of details 1 -->
+
+    
+    <!-- Details 2 -->
+            <div id="job">
+    <div class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{% static 'core/images/details-2-office-team-work.svg' %}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h2>Job For Different Courses </h2>
+                        <ul class="list-unstyled li-space-lg">
+                            <li class="media">
+                                <i class="fas fa-check"></i>
+                                <div class="media-body">To enable users to search for job postings based on different educational courses, helping them find relevant job opportunities.</div>
+                            </li>
+
+                        </ul>
+                        <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox-2">JOB</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-2 -->
+    <!-- end of details 2 -->
+
+    <!-- Details Lightboxes -->
+    <!-- Details Lightbox 1 -->
+	<div id="details-lightbox-1" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="container">
+            <div class="row">
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <div class="col-lg-8">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{% static 'core/images/details-lightbox-1.svg' %}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-4">
+                    <h5>Chat Instructions:</h5>
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body">Type your question or message in the input field at the bottom of the chat page.
+Press "Send" to submit your message. Your message will appear on the left side of the chat.</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body">When the admin replies, their message will appear on the right side of the chat.
+</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body">Each message has a timestamp showing when it was sent. This helps you keep track of the conversation timeline.
+Admin responses will be labeled "Admin," making it easy to distinguish between your messages and replies.</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body">When your queries are resolved, you can leave the chat section.
+You can return to the chat anytime if you have further questions or need additional guidance.</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body">All messages are private between you and the admin to ensure confidentiality.
+</div>
+                        </li>
+                    </ul>
+                    <a class="btn-solid-reg mfp-close page-scroll" href="{% url 'chat_view' %}">START CHART</a> <a class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of details lightbox 1 -->
+
+    <!-- Details Lightbox 2 -->
+	<div id="details-lightbox-2" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="container">
+            <div class="row">
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <div class="col-lg-8">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{% static 'core/images/details-lightbox-2.svg' %}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-4">
+                    <h3>Job Search</h3>
+                    <hr>
+                    <p>Changing your life through getting a job involves a combination of self-reflection, preparation, and proactive steps. Here’s a guide to help you navigate this journey:</p>
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body">Self-Assessment</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body">Build Your Skills</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body"> Create an Impressive Resume and Cover Letter</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body"> Job Search Strategies</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body"> Prepare for Interviews</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-check"></i><div class="media-body">Follow Up</div>
+                        </li>
+                    </ul>
+                    <a class="btn-solid-reg mfp-close page-scroll" href="{% url 'course_job' %}">GO</a> <a class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of details lightbox 2 -->
+    <!-- end of details lightboxes -->
+
+
+    <!-- Pricing -->
+
+    <div id="pricing" class="cards-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <br><br>
+                    <h2>Explore Multiple Courses</h2>
+                    <p class="p-heading p-large">
+                        After completing your education, it's essential to explore various courses to find the right fit for your interests and career aspirations. Here are some options:</p>                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Card-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">AFTER 10</div>
+                            <div class="card-subtitle">After 10th grade, students can choose from several streams:
+                            </div>
+                            <hr class="cell-divide-hr">
+                            <ul class="list-unstyled li-space-lg">
+
+                            </ul>
+
+                            <br>
+                            <div class="button-wrapper">
+                                <a class="btn-solid-reg page-scroll" href="{% url 'after_10' %}">SELECT</a>
+                            </div>
+                        </div>
+                    </div> <!-- end of card -->
+                    <!-- end of card -->
+
+                    <!-- Card-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title">AFTER 12</div>
+                            <div class="card-subtitle">After 12th grade, students can choose from several streams:</div>
+                            <hr class="cell-divide-hr">
+                            <ul class="list-unstyled li-space-lg">
+
+                            </ul>
+                            <br>
+                            <div class="button-wrapper">
+                                <a class="btn-solid-reg page-scroll" href="{% url 'after_12' %}">SELECT</a>
+                            </div>
+                        </div>
+                    </div> <!-- end of card -->
+                    <!-- end of card -->
+
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-2 -->
+    <!-- end of pricing -->
+    <!-- Testimonials -->
+        <div id="about" class="basic-4">
+            <div class="slider-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{% static 'core/images/testimonials-2-men-talking.svg' %}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <h2>About The Team</h2>
+
+                    <!-- Card Slider -->
+                    <div class="slider-container">
+                        <div class="swiper-container card-slider">
+                            <div class="swiper-wrapper">
+                                
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="testimonial-text">Experts in education and career counseling, providing insights on different career options after 10th and 12th grade.</p>
+                                            <p class="testimonial-author">Career Advisors</p>
+                                        </div>
+                                    </div>
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+        
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="testimonial-text">Skilled developers and engineers who ensure our platform runs smoothly and provides the best user experience.</p>
+                                            <p class="testimonial-author">Technical Team</p>
+                                        </div>
+                                    </div>        
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+        
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="testimonial-text">Always available to assist users with their queries and provide guidance on using the platform effectively.</p>
+                                            <p class="testimonial-author">Support Team</p>
+                                        </div>
+                                    </div>        
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="testimonial-text">Dedicated to curating relevant career-related information, aptitude tests, and expert advice.</p>
+                                            <p class="testimonial-author">Content Creators</p>
+                                        </div>
+                                    </div>
+                                </div><!-- end of swiper-slide -->
+                                <!-- end of slide -->
+                               
+                            </div> <!-- end of swiper-wrapper -->
+        
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <!-- end of add arrows -->
+        
+                        </div> <!-- end of swiper-container -->
+                    </div> <!-- end of slider-container -->
+                    <!-- end of card slider -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div>
+        </div>
+            <!-- end of slider-2 -->
+    <!-- end of testimonials -->
+
+
+
+                  
+
+
+
+
+
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © 2024 <a href="https://inovatik.com">Career</a> - All rights reserved</p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright --> 
+    <!-- end of copyright -->
+    
+    	</div></div></div>
+    <!-- Scripts -->
+    <script src="{% static 'core/js/jquery.min.js' %}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{% static 'core/js/popper.min.js' %}"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="{% static 'core/js/bootstrap.min.js' %}"></script> <!-- Bootstrap framework -->
+    <script src="{% static 'core/js/jquery.easing.min.js' %}"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="{% static 'core/js/swiper.min.js' %}"></script> <!-- Swiper for image and text sliders -->
+    <script src="{% static 'core/js/jquery.magnific-popup.js' %}"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="{% static 'core/js/validator.min.js' %}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="{% static 'core/js/scripts.js' %}"></script> <!-- Custom scripts -->
+                </body>
+</html>
