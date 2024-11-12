@@ -1,21 +1,11 @@
-from profile import Profile
-from django.shortcuts import render, redirect, get_object_or_404
+
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.utils import timezone
+
 
 from .models import UserProfile, Feedback, BioQuestion, BioScienceCourse, \
     AptitudeTestBIO, BioQuestion, CommerceQuestion, AptitudeTestCommerce, CommerceCourse, ChatMessage, AdminReply, \
@@ -24,11 +14,6 @@ from .models import UserProfile, Feedback, BioQuestion, BioScienceCourse, \
     BCACourse, BSCCOMQuestion, AptitudeTestBSCCOM, BSCCOMCourse, BBACourse, AptitudeTestBBA, BBAQuestion, \
     CHEMISTRYQuestion, AptitudeTestCHEMISTRY, CHEMISTRYCourse
 from .forms import CustomUserCreationForm
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from .models import UserProfile
-from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import FeedbackForm
@@ -88,7 +73,6 @@ def logout_view(request):
 def profile_view(request):
     user = request.user
 
-    # Retrieve or create the UserProfile
     profile, created = UserProfile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
@@ -99,7 +83,6 @@ def profile_view(request):
         profile.save()
         return redirect('profile')  # Redirect to the same profile page after update
 
-    # Render the profile page with the user's profile information
     return render(request, 'core/profile.html', {'profile': profile})
 
 def learn_more(request):
@@ -162,7 +145,6 @@ def feedback_view(request):
             feedback = form.save(commit=False)  # Save feedback without committing immediately
             feedback.save()  # Now save to the database
 
-            # Optionally send a thank-you email to the user
             send_mail(
                 subject='Thank You for Your Feedback',
                 message='We appreciate your feedback and will get back to you shortly.',
@@ -189,20 +171,14 @@ def after_12_view(request):
 
 
 def aptitude_test(request):
-    # Fetch all questions from the database
     questions = BioQuestion.objects.all()
 
-    # Store the start time in the session
     request.session['start_time'] = timezone.now().isoformat()
 
-    # Pass the questions to the template
     return render(request, 'bio/aptitude_bio.html', {'questions': questions})
 
 
 
-from django.shortcuts import render, redirect
-from django.utils import timezone
-from .models import BioQuestion, AptitudeTestBIO
 
 def submit_test(request):
     if request.method == 'POST':
@@ -211,12 +187,10 @@ def submit_test(request):
         correct_answers = 0
         submitted_answers = []
 
-        # Calculate start_time from session and current time for end_time
         start_time = timezone.datetime.fromisoformat(request.session.get('start_time'))
         end_time = timezone.now()
         time_taken = end_time - start_time
 
-        # Format the time taken into minutes and seconds (optional)
         minutes, seconds = divmod(time_taken.total_seconds(), 60)
         formatted_time_taken = f"{int(minutes)}m {int(seconds)}s"
 
@@ -244,7 +218,6 @@ def submit_test(request):
         else:
             comments = "It seems you need to study a bit more. Don't worry, keep trying!"
 
-        # Create the AptitudeTestBIO object with start_time and end_time
         AptitudeTestBIO.objects.create(
             user=request.user,
             start_time=start_time,
@@ -271,7 +244,6 @@ def result(request):
 def bio_science_view(request):
     courses = BioScienceCourse.objects.all()
 
-    # Process each course's fields to split the text into lists
     for course in courses:
         course.subjects = course.subjects.split(',')
         course.career_opportunities = course.career_opportunities.split(',')
@@ -289,10 +261,8 @@ def timeout_view(request):
 #---------------------------------------------------------------------------------------------------------------------
 
 def aptitude_commerce(request):
-    # Fetch all questions from the database
     questions = CommerceQuestion.objects.all()
 
-    # Pass the questions to the template
     return render(request, 'commerce/aptitude_commerce.html', {'questions': questions})
 
 
@@ -306,7 +276,6 @@ def submit_commerce(request):
         correct_answers = 0
         submitted_answers = []  # Store submitted answers to pass to template
 
-        # Retrieve start_time from session, ensuring it's a string and convert to datetime
         start_time_str = request.session.get('start_time')
         if start_time_str:
             try:
@@ -316,11 +285,9 @@ def submit_commerce(request):
         else:
             start_time = timezone.now()  # fallback if start_time is missing
 
-        # Current time for end_time
         end_time = timezone.now()
         time_taken = end_time - start_time
 
-        # Format the time taken into minutes and seconds (optional)
         minutes, seconds = divmod(time_taken.total_seconds(), 60)
         formatted_time_taken = f"{int(minutes)}m {int(seconds)}s"
 
@@ -347,7 +314,6 @@ def submit_commerce(request):
         else:
             comments = "It seems you need to study a bit more. Don't worry, keep trying!"
 
-        # Save test result in database
         AptitudeTestCommerce.objects.create(
             user=request.user,
             score=total_marks,
@@ -388,10 +354,8 @@ def commerce_view(request):
 
 @login_required
 def chat_view(request):
-    # Get messages for the logged-in user
     messages = ChatMessage.objects.filter(sender=request.user).order_by('-timestamp')
 
-    # Prepare replies dictionary for each message
     replies = {message.id: message.replies.all() for message in messages}
 
     return render(request, 'chat/chat.html', {'messages': messages, 'replies': replies})
@@ -430,10 +394,8 @@ def reply_to_message(request, message_id):
 
 #--------------------------------------------------------------------------------------------------
 def aptitude_hum(request):
-    # Fetch all questions from the database
     questions = HumanitiesQuestion.objects.all()
 
-    # Pass the questions to the template
     return render(request, 'humanities/aptitude_hum.html', {'questions': questions})
 
 
@@ -444,12 +406,10 @@ def submit_hum(request):
         correct_answers = 0
         submitted_answers = []  # Store submitted answers to pass to template
 
-        # Calculate start_time from session and current time for end_time
         start_time = timezone.datetime.fromisoformat(request.session.get('start_time'))
         end_time = timezone.now()
         time_taken = end_time - start_time
 
-        # Format the time taken into minutes and seconds (optional)
         minutes, seconds = divmod(time_taken.total_seconds(), 60)
         formatted_time_taken = f"{int(minutes)}m {int(seconds)}s"
 
@@ -501,7 +461,6 @@ def hum_result(request):
 def hum_view(request):
     courses = HumanitiesCourse.objects.all()
 
-    # Process each course's fields to split the text into lists
     for course in courses:
         course.subjects = course.subjects.split(',')
         course.career_opportunities = course.career_opportunities.split(',')
@@ -512,10 +471,8 @@ def hum_view(request):
 #--------------------------------------------------------------------------------------------------------
 
 def aptitude_computer(request):
-    # Fetch all questions from the database
     questions = ComputerQuestion.objects.all()
 
-    # Pass the questions to the template
     return render(request, 'computer/aptitude_computer.html', {'questions': questions})
 
 
@@ -531,12 +488,11 @@ def submit_computer(request):
         if start_time_str and isinstance(start_time_str, str):
             start_time = timezone.datetime.fromisoformat(start_time_str)
         else:
-            start_time = timezone.now()  # Fallback if start_time is missing
+            start_time = timezone.now()
 
         end_time = timezone.now()
         time_taken = end_time - start_time
 
-        # Format the time taken into minutes and seconds (optional)
         minutes, seconds = divmod(time_taken.total_seconds(), 60)
         formatted_time_taken = f"{int(minutes)}m {int(seconds)}s"
 
@@ -589,7 +545,6 @@ def computer_result(request):
 def computer_view(request):
     courses = ComputerCourse.objects.all()
 
-    # Process each course's fields to split the text into lists
     for course in courses:
         course.subjects = course.subjects.split(',')
         course.career_opportunities = course.career_opportunities.split(',')
@@ -601,10 +556,8 @@ def computer_view(request):
 #----------------------------------------------------------------------------------------------
 
 def aptitude_stati(request):
-    # Fetch all questions from the database
     questions = StatisticQuestion.objects.all()
 
-    # Pass the questions to the template
     return render(request, 'statistic/aptitude_stati.html', {'questions': questions})
 
 
@@ -615,12 +568,10 @@ def submit_stati(request):
         correct_answers = 0
         submitted_answers = []
 
-        # Calculate start_time from session and current time for end_time
         start_time = timezone.datetime.fromisoformat(request.session.get('start_time'))
         end_time = timezone.now()
         time_taken = end_time - start_time
 
-        # Format the time taken into minutes and seconds (optional)
         minutes, seconds = divmod(time_taken.total_seconds(), 60)
         formatted_time_taken = f"{int(minutes)}m {int(seconds)}s"
 
@@ -649,7 +600,6 @@ def submit_stati(request):
         else:
             comments = "It seems you need to study a bit more. Don't worry, keep trying!"
 
-        # Create the AptitudeTestBIO object with start_time and end_time
         AptitudeTestStatistics.objects.create(
             user=request.user,
             start_time=start_time,
@@ -675,7 +625,6 @@ def stati_result(request):
 def stati_view(request):
     courses = StatisticCourse.objects.all()
 
-    # Process each course's fields to split the text into lists
     for course in courses:
         course.subjects = course.subjects.split(',')
         course.career_opportunities = course.career_opportunities.split(',')
@@ -685,20 +634,14 @@ def stati_view(request):
     return render(request, 'statistic/statistics.html', {'courses': courses})
 #------------------------------------------------------------------------------------------------
 def aptitude_BCA(request):
-    # Fetch all questions from the database
     questions = BCAQuestion.objects.all()
 
-    # Store the start time in the session
     request.session['start_time'] = timezone.now().isoformat()
 
-    # Pass the questions to the template
     return render(request, 'after_12/aptitude_bca.html', {'questions': questions})
 
 
 
-from django.shortcuts import render, redirect
-from django.utils import timezone
-from .models import BioQuestion, AptitudeTestBIO
 
 def submit_BCA(request):
     if request.method == 'POST':
@@ -707,12 +650,10 @@ def submit_BCA(request):
         correct_answers = 0
         submitted_answers = []
 
-        # Calculate start_time from session and current time for end_time
         start_time = timezone.datetime.fromisoformat(request.session.get('start_time'))
         end_time = timezone.now()
         time_taken = end_time - start_time
 
-        # Format the time taken into minutes and seconds (optional)
         minutes, seconds = divmod(time_taken.total_seconds(), 60)
         formatted_time_taken = f"{int(minutes)}m {int(seconds)}s"
 
@@ -740,7 +681,6 @@ def submit_BCA(request):
         else:
             comments = "It seems you need to study a bit more. Don't worry, keep trying!"
 
-        # Create the AptitudeTestBIO object with start_time and end_time
         AptitudeTestBCA.objects.create(
             user=request.user,
             start_time=start_time,
@@ -779,13 +719,10 @@ def BCA_view(request):
 
 #---------------------------------------------------------------------------------------------------------
 def aptitude_bsccom(request):
-    # Fetch all questions from the database
     questions = BSCCOMQuestion.objects.all()
 
-    # Store the start time in the session
     request.session['start_time'] = timezone.now().isoformat()
 
-    # Pass the questions to the template
     return render(request, 'after_12/aptitude_bca.html', {'questions': questions})
 def submit_BSC_COM(request):
     if request.method == 'POST':
@@ -951,13 +888,10 @@ def bba_view(request):
 #----------------------------------------------------------------------------------------
 
 def aptitude_chemistry(request):
-    # Fetch all questions from the database
     questions = CHEMISTRYQuestion.objects.all()
 
-    # Store the start time in the session
     request.session['start_time'] = timezone.now().isoformat()
 
-    # Pass the questions to the template
     return render(request, 'after_12/aptitude_chemistry.html', {'questions': questions})
 def submit_chemistry(request):
     if request.method == 'POST':
@@ -966,7 +900,6 @@ def submit_chemistry(request):
         correct_answers = 0
         submitted_answers = []
 
-        # Calculate start_time from session and current time for end_time
         start_time = timezone.datetime.fromisoformat(request.session.get('start_time'))
         end_time = timezone.now()
         time_taken = end_time - start_time
@@ -1026,7 +959,6 @@ def chemistry_result(request):
 def chemistry_view(request):
     courses = CHEMISTRYCourse.objects.all()
 
-    # Process each course's fields to split the text into lists
     for course in courses:
         course.subjects = course.subjects.split(',')
         course.career_opportunities = course.career_opportunities.split(',')
@@ -1068,19 +1000,6 @@ def privacy(request):
     return render(request, 'core/privacy.html')  # Ensure the template path is correct
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 def admin_check(user):
     return user.is_superuser
 
@@ -1093,7 +1012,6 @@ def admin_view_users(request):
     return render(request, 'admin/view_users.html', {'users': users})
 
 
-from django.shortcuts import render
 from .models import Feedback
 
 def view_feedback(request):
@@ -1102,14 +1020,6 @@ def view_feedback(request):
 
 #------------------------------------------------------------------------------
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.core.mail import send_mail
-from django.conf import settings
-from .models import ChatMessage, AdminReply
-
-
-# Helper function to check if the user is an admin
 def is_admin(user):
     return user.is_staff
 
@@ -1127,10 +1037,8 @@ def admin_reply_to_message(request, message_id):
         reply_text = request.POST.get('reply')
         message = get_object_or_404(ChatMessage, id=message_id)  # Get the original message
         if reply_text:
-            # Save the admin reply to the database
             reply = AdminReply.objects.create(message=message, admin=request.user, reply=reply_text)
 
-            # Send email notification to the user
             try:
                 send_mail(
                     subject='New Reply to Your Message',
@@ -1149,13 +1057,11 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 from .forms import UserEditForm, UserProfileEditForm
 
-# View user profile
 def view_user_profile(request, user_id):
     user = get_object_or_404(User, id=user_id)
     user_profile = get_object_or_404(UserProfile, user=user)
     return render(request, 'admin/view_user_profile.html', {'user': user, 'user_profile': user_profile})
 
-# Edit user profile
 def edit_user_profile(request, user_id):
     user = get_object_or_404(User, id=user_id)
     user_profile = get_object_or_404(UserProfile, user=user)
@@ -1177,7 +1083,6 @@ def edit_user_profile(request, user_id):
         'user': user,
     })
 
-# Delete user profile
 def delete_user_profile(request, user_id):
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
@@ -1185,8 +1090,6 @@ def delete_user_profile(request, user_id):
         return redirect('view_users')
     return render(request, 'admin/delete_user_profile.html', {'user': user})
 
-
-# core/views.py
 
 from django.shortcuts import render
 from .models import AptitudeTestBIO, AptitudeTestCommerce, AptitudeTestHumanities, AptitudeTestComputer, \
